@@ -1,0 +1,703 @@
+@layer ui-sdk;
+
+@import "tailwindcss";
+@import "@ui-sdk/core/web.css" layer(components);
+
+/* Official Figma UI3 Dark Theme Design Tokens (FPL) */
+:root {
+  color-scheme: dark;
+
+  /* Semantic Figma FPL surface, border, text & icon tokens */
+  --color-bg: #2c2c2c;
+  --color-bg-canvas: #1e1e1e;
+  --color-bg-secondary: #383838;
+  --color-bg-tertiary: #444444;
+  --color-bg-elevated: #1e1e1e;
+  --color-bg-hover: rgba(255, 255, 255, 0.08);
+  --color-bg-brand: #0d99ff;
+  --color-bg-brand-hover: #007be5;
+  --color-bg-selected: #394360;
+  --color-bg-selected-hover: #424f72;
+  --color-bg-selected-secondary: #32394d;
+  --color-bg-component-selected: #452c6b;
+  --color-bg-component-secondary: #312347;
+  --color-bg-dev: #14ae5c;
+
+  --color-border: #444444;
+  --color-border-strong: #525252;
+  --color-border-selected: #0d99ff;
+
+  --color-text: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-tertiary: rgba(255, 255, 255, 0.4);
+  --color-text-brand: #80caff;
+  --color-text-component: #d8b4fe;
+
+  --color-icon: #ffffff;
+  --color-icon-secondary: rgba(255, 255, 255, 0.7);
+  --color-icon-tertiary: rgba(255, 255, 255, 0.4);
+  --color-icon-brand: #80caff;
+
+  /* Official Figma FPL layout & control metrics */
+  --fpl-control-height: 24px;
+  --fpl-button-lg-height: 32px;
+  --fpl-header-height: 40px;
+  --fpl-row-height: 32px;
+  --fpl-radius-medium: 5px;
+  --fpl-radius-large: 8px;
+
+  /* Map @ui-sdk/core primitives directly onto Figma FPL tokens */
+  --ui-background: var(--color-bg);
+  --ui-foreground: var(--color-text);
+  --ui-muted: var(--color-bg-secondary);
+  --ui-muted-foreground: var(--color-text-secondary);
+  --ui-border: var(--color-border);
+  --ui-input: var(--color-border);
+  --ui-primary: var(--color-bg-brand);
+  --ui-primary-foreground: #ffffff;
+  --ui-destructive: #f24822;
+  --ui-ring: rgba(13, 153, 255, 0.45);
+  --ui-ring-border: var(--color-border-selected);
+  --ui-overlay: rgba(0, 0, 0, 0.65);
+  --ui-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.4),
+    0 12px 32px -4px rgba(0, 0, 0, 0.65);
+  --ui-radius: var(--fpl-radius-medium);
+  --ui-spacing: 0.25rem;
+  --ui-font-size: 0.6875rem;
+  --ui-line-height: 1rem;
+  --ui-font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --ui-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: var(--ui-font-sans);
+  font-size: 16px;
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.figma-ui3-panel {
+  background: var(--color-bg);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.figma-ui3-toolbar {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 13px;
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.45),
+    0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* Official Figma FPL scrubbable numeric input (exact 24px height, 11px tabular-nums) */
+.figma-num-field [data-slot="number-input"] {
+  gap: 0;
+  width: 100%;
+}
+
+.figma-num-field [data-slot="number-input-group"] {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--fpl-control-height);
+  background: var(--color-bg-secondary);
+  border: 1px solid transparent;
+  border-radius: var(--fpl-radius-medium);
+  overflow: hidden;
+  transition: border-color 100ms ease, background-color 100ms ease;
+}
+
+.figma-num-field [data-slot="number-input-group"]:hover {
+  border-color: var(--color-border-strong);
+}
+
+.figma-num-field [data-slot="number-input-group"]:focus-within {
+  border-color: var(--color-border-selected);
+  background: var(--color-bg);
+}
+
+.figma-num-field [data-slot="number-input-scrub-area"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  min-width: 24px;
+  height: 100%;
+  padding: 0;
+  color: var(--color-icon-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: ew-resize;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.figma-num-field [data-slot="number-input-scrub-area"]:hover {
+  color: var(--color-icon);
+}
+
+.figma-num-field [data-slot="number-input-control"] {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 6px 0 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: 22px;
+  text-align: left;
+  outline: none;
+}
+
+.figma-num-field-compact [data-slot="number-input-scrub-area"] {
+  width: 22px;
+  min-width: 22px;
+}
+
+.figma-num-field-compact [data-slot="number-input-control"] {
+  padding: 0 4px 0 0;
+}
+
+/* Split-right opacity field inside unified Fill/Stroke control */
+.figma-num-field-split [data-slot="number-input-group"] {
+  border-radius: 0 var(--fpl-radius-medium) var(--fpl-radius-medium) 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.figma-num-field-split [data-slot="number-input-control"] {
+  padding: 0 2px 0 6px;
+}
+
+.figma-num-field-split [data-slot="number-input-scrub-area"] {
+  width: 18px;
+  min-width: 18px;
+  padding: 0 4px 0 0;
+}
+
+/* Official Figma FPL Tabs (24px pill tabs on 40px tab bar) */
+.figma-ui3-panel [data-slot="tabs-list"] {
+  border-bottom: 0;
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+}
+
+.figma-ui3-panel [data-slot="tabs-tab"] {
+  height: var(--fpl-control-height);
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--fpl-radius-medium);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: transparent;
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+.figma-ui3-panel [data-slot="tabs-tab"]::after {
+  display: none;
+}
+
+.figma-ui3-panel [data-slot="tabs-tab"]:hover {
+  color: var(--color-text);
+}
+
+.figma-ui3-panel [data-slot="tabs-tab"][data-selected],
+.figma-ui3-panel [data-slot="tabs-tab"][aria-selected="true"] {
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+}
+
+.figma-ui3-panel [data-slot="tabs-panel"]:not([hidden]) {
+  padding: 0;
+}
+
+/* Official Figma 57px Left Navigation Rail tabs */
+.figma-left-rail [data-slot="tabs-list"] {
+  border: 0;
+  padding: 0;
+  gap: 8px;
+  background: transparent;
+}
+
+.figma-left-rail [data-slot="tabs-tab"] {
+  height: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.figma-left-rail [data-slot="tabs-tab"]::after {
+  display: none;
+}
+
+.figma-left-rail [data-slot="tabs-tab"]:hover {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.figma-left-rail [data-slot="tabs-tab"][data-selected],
+.figma-left-rail [data-slot="tabs-tab"][aria-selected="true"] {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.figma-left-rail [data-slot="tabs-tab"][data-selected] .figma-rail-icon,
+.figma-left-rail [data-slot="tabs-tab"][aria-selected="true"] .figma-rail-icon {
+  background: var(--color-bg-selected);
+  color: var(--color-icon-brand);
+}
+
+/* Official Figma FPL Checkbox (16x16 rounded-4px) */
+.figma-ui3-panel [data-slot="checkbox"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-secondary);
+  color: #ffffff;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 100ms ease, border-color 100ms ease;
+}
+
+.figma-ui3-panel [data-slot="checkbox"][data-checked] {
+  border-color: var(--color-bg-brand);
+  background: var(--color-bg-brand);
+}
+
+/* Official Figma FPL Segmented Control (exact 24px height, #383838 track, #2c2c2c active inset) */
+[data-slot="segmented-control"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--fpl-control-height);
+  isolation: isolate;
+  padding: 1px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--fpl-radius-medium);
+  border: 0;
+  gap: 0;
+}
+
+[data-slot="segmented-control-indicator"] {
+  position: absolute;
+  z-index: -1;
+  top: var(--segmented-control-indicator-top);
+  left: var(--segmented-control-indicator-left);
+  width: var(--segmented-control-indicator-width);
+  height: var(--segmented-control-indicator-height);
+  border-radius: 4px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-strong);
+  transition-property: top, left, width, height;
+  transition-duration: 140ms;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-slot="segmented-control-indicator"][data-activation-direction="none"] {
+  transition: none;
+}
+
+[data-slot="segmented-control-item"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 22px;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--color-icon-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+[data-slot="segmented-control-item"]:hover {
+  color: var(--color-icon);
+}
+
+[data-slot="segmented-control-item"][data-checked] {
+  color: var(--color-icon);
+}
+
+/* Official Figma Layers Tree (--fpl-tree-grid-row-height: 32px) */
+[data-slot="tree"] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  gap: 0;
+  padding: 0 8px 8px;
+  outline: none;
+}
+
+[data-slot="tree-group"] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  gap: 1px;
+  margin-top: 1px;
+}
+
+[data-slot="tree-label"] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  gap: 6px;
+  height: var(--fpl-row-height);
+  padding-inline-start: calc((var(--tree-level, 1) - 1) * 12px + 6px);
+  padding-inline-end: 6px;
+  border-radius: var(--fpl-radius-medium);
+  color: var(--color-text);
+  font-size: 11px;
+  cursor: default;
+  user-select: none;
+}
+
+[data-slot="tree-label"]:not([data-branch]) {
+  padding-inline-start: calc((var(--tree-level, 1) - 1) * 12px + 6px);
+}
+
+[data-slot="tree-label"]:hover:not([data-disabled]) {
+  background: var(--color-bg-hover);
+}
+
+[data-slot="tree-item"][aria-selected="true"] > [data-slot="tree-label"],
+[data-slot="tree-item"][data-selected] > [data-slot="tree-label"],
+[data-slot="tree-label"][data-selected] {
+  background: var(--color-bg-selected);
+  color: var(--color-text);
+}
+
+[data-slot="tree-item"][aria-selected="true"] > [data-slot="tree-label"]:hover,
+[data-slot="tree-item"][data-selected] > [data-slot="tree-label"]:hover,
+[data-slot="tree-label"][data-selected]:hover {
+  background: var(--color-bg-selected-hover);
+}
+
+[data-slot="tree-indicator"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  color: var(--color-icon-tertiary);
+  rotate: 0deg;
+  transition: rotate 110ms ease;
+  flex-shrink: 0;
+}
+
+[data-slot="tree-indicator"][data-expanded] {
+  rotate: 90deg;
+}
+
+/* Color picker */
+[data-slot="color-picker"] {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: none;
+}
+
+[data-slot="popover-content"] [data-slot="color-picker"] {
+  display: flex;
+  width: 100%;
+}
+
+[data-slot="color-picker-area"] {
+  position: relative;
+  width: 100%;
+  height: 152px;
+  border-radius: var(--fpl-radius-medium);
+  background: var(--color-area-background);
+  cursor: crosshair;
+  touch-action: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+[data-slot="color-picker-area-thumb"] {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  background: var(--color-picker-color);
+  translate: -50% -50%;
+}
+
+[data-slot="color-picker-slider"] {
+  position: relative;
+  width: calc(100% - 14px);
+  margin-inline: 7px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--color-slider-background);
+  cursor: pointer;
+  touch-action: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+[data-slot="color-picker-slider"][data-channel="hue"] {
+  background: linear-gradient(
+    to right,
+    #ff0000 0%,
+    #ffff00 17%,
+    #00ff00 33%,
+    #00ffff 50%,
+    #0000ff 67%,
+    #ff00ff 83%,
+    #ff0000 100%
+  );
+}
+
+[data-slot="color-picker-slider"][data-channel="alpha"] {
+  background:
+    var(--color-slider-background),
+    repeating-conic-gradient(#555 0 25%, #333 0 50%) 0 0 / 8px 8px;
+}
+
+[data-slot="color-picker-slider-thumb"] {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
+  background: var(--color-picker-color);
+  top: 50%;
+  translate: -50% -50%;
+}
+
+[data-slot="color-picker-swatch"] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background:
+    linear-gradient(var(--color-picker-color), var(--color-picker-color)),
+    repeating-conic-gradient(#666 0 25%, #444 0 50%) 0 0 / 6px 6px;
+  flex-shrink: 0;
+}
+
+[data-slot="color-picker-swatches"] {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 5px;
+}
+
+[data-slot="color-picker-swatch-item"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--color-picker-color);
+  cursor: pointer;
+  padding: 0;
+}
+
+[data-slot="color-picker-swatch-item"][data-selected] {
+  outline: 2px solid #ffffff;
+  outline-offset: 1px;
+}
+
+[data-slot="color-picker-input"] {
+  height: var(--fpl-control-height);
+  font-family: var(--ui-font-mono);
+  font-size: 11px;
+  background: var(--color-bg-secondary);
+  border-color: transparent;
+  border-radius: var(--fpl-radius-medium);
+}
+
+[data-slot="color-picker-input"]:hover {
+  border-color: var(--color-border-strong);
+}
+
+[data-slot="color-picker-input"]:focus-visible {
+  border-color: var(--color-border-selected);
+  background: var(--color-bg);
+}
+
+/* Official Figma #1e1e1e elevated popups, menus & tooltips */
+:is(
+  [data-slot="menu-content"],
+  [data-slot="menu-sub-content"],
+  [data-slot="select-content"],
+  [data-slot="popover-content"]
+) {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fpl-radius-large);
+  box-shadow: var(--ui-shadow);
+  color: var(--color-text);
+  transform-origin: var(--transform-origin);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+:is(
+  [data-slot="menu-content"],
+  [data-slot="menu-sub-content"],
+  [data-slot="select-content"],
+  [data-slot="popover-content"]
+):is([data-starting-style], [data-ending-style]) {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+[data-slot="menu-content"],
+[data-slot="menu-sub-content"] {
+  padding: 4px;
+  min-width: 180px;
+}
+
+[data-slot="menu-item"],
+[data-slot="menu-checkbox-item"],
+[data-slot="menu-sub-trigger"],
+[data-slot="select-item"] {
+  height: 26px;
+  padding-inline: 8px;
+  border-radius: var(--fpl-radius-medium);
+  font-size: 11px;
+  color: var(--color-text);
+}
+
+:is(
+  [data-slot="menu-item"],
+  [data-slot="menu-checkbox-item"],
+  [data-slot="menu-sub-trigger"],
+  [data-slot="select-item"]
+)[data-highlighted] {
+  background: var(--color-bg-brand);
+  color: #ffffff;
+}
+
+[data-slot="tooltip-content"] {
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--fpl-radius-medium);
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+[data-slot="dialog-backdrop"] {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+}
+
+[data-slot="dialog-content"] {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65);
+  color: var(--color-text);
+}
+
+[data-slot="popover-content"] {
+  overflow-x: hidden;
+  padding: 12px;
+  max-width: 256px;
+}
+
+[data-slot="command"] {
+  width: 100%;
+  max-width: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* ScrollArea subtle Figma scrollbars */
+[data-slot="scroll-area"] {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+}
+
+[data-slot="scroll-area-viewport"] {
+  width: 100%;
+  height: 100%;
+}
+
+[data-slot="scroll-area-content"] {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+}
+
+[data-slot="scroll-area-scrollbar"] {
+  width: 6px;
+  padding: 1px;
+}
+
+[data-slot="scroll-area-thumb"] {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+[data-slot="scroll-area-thumb"]:hover {
+  background: rgba(255, 255, 255, 0.34);
+}
