@@ -23,7 +23,7 @@
     "type": "git",
     "url": "https://github.com/ehtisham-afzal/openfigma.git"
   },
-  "homepage": "https://github.com/ehtisham-afzal/openfigma#readme",
+  "homepage": "https://openfigma.vercel.app/",
   "bugs": {
     "url": "https://github.com/ehtisham-afzal/openfigma/issues"
   },

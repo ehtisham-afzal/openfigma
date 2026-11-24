@@ -4,6 +4,7 @@
 
 **The open-source Figma UI3 starter template for building collaborative design tools, vector editors, and canvas applications.**
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-openfigma.vercel.app-0d99ff.svg?style=flat-square&logo=vercel&logoColor=white)](https://openfigma.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0d99ff.svg?style=flat-square)](./LICENSE)
 [![React 19](https://img.shields.io/badge/React-19-61dafb.svg?style=flat-square&logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6.svg?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -11,9 +12,13 @@
 [![UI SDK](https://img.shields.io/badge/UI_SDK-Agent_Ready-14ae5c.svg?style=flat-square)](https://www.npmjs.com/package/@ui-sdk/react)
 [![Use this template](https://img.shields.io/badge/GitHub-Use_this_template-238636.svg?style=flat-square&logo=github)](https://github.com/ehtisham-afzal/openfigma/generate)
 
+**[🚀 Live Preview](https://openfigma.vercel.app/)** · **[✨ Use This Template](https://github.com/ehtisham-afzal/openfigma/generate)** · **[📖 Quick Start](#quick-start)**
+
 <br />
 
-<img src="./docs/assets/openfigma-hero.png" alt="OpenFigma UI3 Workspace" width="100%" />
+<a href="https://openfigma.vercel.app/">
+  <img src="./docs/assets/openfigma-hero.png" alt="OpenFigma UI3 Workspace — Click for Live Preview" width="100%" />
+</a>
 
 </div>
 
