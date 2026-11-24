@@ -836,7 +836,7 @@ export function LeftSidebar({
               aria-label="OpenFigma main menu"
               className="mb-3 flex !h-[32px] !w-[32px] items-center justify-center rounded-[8px] border-transparent bg-transparent !p-0 text-[var(--color-icon)] hover:bg-[var(--color-bg-secondary)]"
             >
-              <OpenFigmaLogo className="h-[18px] w-[13px]" />
+              <OpenFigmaLogo className="h-[18px] w-[18px]" />
             </MenuTrigger>
             <MenuContent side="right" align="start" sideOffset={8}>
               <MenuItem value="quick-actions" shortcut="mod+k">

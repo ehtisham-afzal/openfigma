@@ -192,7 +192,7 @@ export function PresentationModal() {
         {/* Presentation Header (48px) */}
         <div className="flex h-12 shrink-0 items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-bg)] px-4">
           <div className="flex min-w-0 items-center gap-2 text-[11px]">
-            <OpenFigmaLogo className="h-4 w-3 shrink-0" />
+            <OpenFigmaLogo className="h-4 w-4 shrink-0" />
             <span className="truncate font-semibold text-[var(--color-text)]">{doc.title}</span>
             <span className="text-[var(--color-text-tertiary)]">/</span>
             <span className="truncate text-[var(--color-text-secondary)]">

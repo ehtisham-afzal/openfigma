@@ -265,7 +265,7 @@ export function QuickActionsDialog({
           </CommandList>
           <div className="flex h-[32px] items-center justify-between border-t border-[var(--color-border)] bg-[var(--color-bg)] px-3.5 text-[10px] text-[var(--color-text-tertiary)]">
             <span>↑↓ Navigate · ↵ Run action · Esc Close</span>
-            <span>OpenFigma Actions</span>
+            <span>OpenFigma · Not affiliated with Figma, Inc.</span>
           </div>
         </Command>
       </DialogContent>
@@ -426,6 +426,9 @@ export function ShortcutsDialog({
               </div>
             ))
           )}
+        </div>
+        <div className="border-t border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-2 text-[10px] text-[var(--color-text-tertiary)]">
+          OpenFigma is an independent open-source project and is not affiliated with Figma, Inc.
         </div>
       </DialogContent>
     </Dialog>

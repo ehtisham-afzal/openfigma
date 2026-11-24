@@ -602,6 +602,12 @@ export function BottomToolbar({
               <RotateCcwIcon aria-hidden="true" className="h-3.5 w-3.5" />
               Reset starter showcase
             </MenuItem>
+            <MenuSeparator />
+            <div className="px-2 py-1 text-[10px] leading-snug text-[var(--color-text-tertiary)]">
+              Independent open-source starter.
+              <br />
+              Not affiliated with Figma, Inc.
+            </div>
           </MenuContent>
         </Menu>
       </div>

@@ -20,6 +20,8 @@
   <img src="./docs/assets/openfigma-hero.png" alt="OpenFigma UI3 Workspace — Click for Live Preview" width="100%" />
 </a>
 
+> **Disclaimer:** OpenFigma is an independent open-source starter template and is **not affiliated with, endorsed by, or sponsored by Figma, Inc.** "Figma" is a registered trademark of Figma, Inc.
+
 </div>
 
 ---
@@ -235,8 +237,10 @@ All surfaces, borders, selection colors, and control heights are driven by CSS v
 
 ---
 
-## Contributing & License
+## Contributing, Disclaimer & License
 
 Contributions, issues, and feature ideas are welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+**Trademark Notice:** OpenFigma is an independent open-source community project and is not affiliated with, endorsed by, or sponsored by Figma, Inc. All brand icons and logos in this repository are original to OpenFigma.
 
 Released under the [MIT License](./LICENSE). Free to use for personal, open-source, and commercial projects.

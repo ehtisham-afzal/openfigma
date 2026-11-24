@@ -455,7 +455,7 @@ function OpenFigmaWorkspace() {
             onClick={() => toggleShowUI(true)}
             className="figma-ui3-toolbar !h-9 gap-2 px-3 text-[11px] font-medium text-[var(--color-text)] hover:bg-[var(--color-bg-secondary)]"
           >
-            <OpenFigmaLogo className="h-4 w-3" />
+            <OpenFigmaLogo className="h-4 w-4" />
             <PanelLeftOpenIcon aria-hidden="true" className="h-3.5 w-3.5 text-[var(--color-icon-secondary)]" />
             <span>Show UI</span>
           </Button>
